@@ -1,0 +1,729 @@
+<html><head>
+    <body>
+        <title>Paint</title>
+
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            #pos{
+                position: absolute;
+                outline: 1px solid black;
+                lefy: 0;
+                margin-top: -4px;
+                padding: 3px;
+            }
+            #mycanvas{
+                cursor: none;
+            }
+            #inspector{
+                position: fixed;
+                z-index: 30;
+                top: 10px;
+                left: 810px;
+                outline: 1px solid black;
+                padding: 10px;
+                background-color: rgba(255,255,255,0.5);
+            }
+            .pallets{
+                text-align: center;
+            }
+            .zoom{
+                margin: 5px 0;
+                display: inline-block;
+                width: 23px;
+                height: 23px;
+            }
+            #eraser{
+                background-image: url('eraser.png');
+                background-repeat: no-repeat;
+                width: 23px;
+                height: 23px;
+            }
+            #brushRect{
+                background-image: url('square.png');
+                background-position: center center;
+                background-repeat: no-repeat;
+                width: 23px;
+                height: 23px;
+            }
+            #brushCircle{
+                background-image: url('circle.png');
+                background-position: center center;
+                background-repeat: no-repeat;
+                width: 23px;
+                height: 23px;
+            }
+            #brushTriangle{
+                background-image: url('triangle.png');
+                background-position: center center;
+                background-repeat: no-repeat;
+                width: 23px;
+                height: 23px;
+            }
+            #trash{
+                background-image: url('bin.png');
+                background-position: center center;
+                background-repeat: no-repeat;
+                width: 23px;
+                height: 23px;
+            }
+            #inspector input{
+                border: 1px solid black;
+                cursor: pointer;
+            }
+            #Mcursor{
+                position: absolute;
+                display: block;
+                border: 1px solid grey;
+            }
+            #color{
+                margin-left: -5px;
+                margin-top: 2px;
+                width: 48px;
+            }
+
+            .copy{
+                position: absolute;
+                width: 100%;
+                bottom: 0;
+                text-align: center;
+            }
+
+            #rectangle{
+                background-image: url('rectangle.png');
+                background-position: center center;
+                background-repeat: no-repeat;
+                width: 23px;
+                height: 23px;
+            }
+            #circle{
+                background-image: url('circlebtn.png');
+                background-position: center center;
+                background-repeat: no-repeat;
+                width: 23px;
+                height: 23px;
+            }
+            #textbtn{
+                background-image: url('tbtn.png');
+                background-position: center center;
+                background-repeat: no-repeat;
+                width: 23px;
+                height: 23px;
+            }
+
+            #textInput{
+                position: fixed;
+                z-index: 25;
+                top:30px;
+                border: 1px solid black;
+                padding: 0 5px 5px 5px;
+                background-color: rgba(255,255,255,.5);
+                display: none;
+            }
+
+
+            #textInput input{
+                padding: 5px;
+                border: 1px solid black;
+            }
+            #dragzone{
+                width: 100%;
+                height: 15px;
+                background-image: url('dragpart.png');
+                background-repeat: no-repeat;
+                background-position: center center;
+                cursor: crosshair;
+            }
+            #fontfamily{
+                position: relative;
+                right: 0;
+                padding: 4px;
+                border: 1px solid black;
+                margin: 2px 0 0 0;
+                width: 95px;
+            }
+
+            #txtbtn{
+              cursor: pointer;
+            }
+
+            #dragablepaletes{
+                cursor: crosshair;
+                display: block;
+                position: absolute;
+                width: 100%;
+                height: 30px;
+                left: 0;
+                top: 0;
+                line-height: 30px;
+            }
+
+            #previzualizare{
+                position: absolute;
+                border: 1px dashed black;
+                border-bottom: none;
+                padding: 0;
+                margin: 0;
+                left: -1px;
+                transform: translate(0,-95%);
+                white-space: nowrap;
+                display: none;
+
+
+            }
+
+        </style>
+
+    </head>
+    <body>
+
+        <canvas id="mycanvas" width="800" height="500" style="border: 1px solid black; cursor: none;" onmousedown="DownFunc()" onmouseup="UpFunc()" onmouseout="document.getElementById('Mcursor').style.display = 'none';" onmouseover="document.getElementById('Mcursor').style.display = 'block';">Not Suported!</canvas>
+
+        <head>
+<style>
+body {font-family: "Lato", sans-serif;}
+
+/* Style the tab */
+div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+</style>
+</head>
+<body>
+
+<p>Would you like to play another game ???</p>
+
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'Snake'); snake()">Snake Game</button>
+  <button class="tablinks" onclick="openCity(event, 'Funny'); funny()">Funny Game</button>
+  <button class="tablinks" onclick="openCity(event, 'Kill'); kill()">Kill Game</button>
+</div>
+
+<div id="Snake" class="tabcontent">
+  <h3>Snake Game</h3>
+  <p>It is the first game that covers the basics of the famous Snake Game </p>
+    <script language="javascript">
+        function snake()
+        {
+            window.location.href = "snake.html"
+        }
+</script>
+
+</div>
+
+<div id="Funny" class="tabcontent">
+  <h3>Funny Game</h3>
+  <p>New game based on the modern principles of basic algorithms.</p>
+    <script language="javascript">
+        function funny()
+        {
+            window.location.href = "funny.html"
+        }
+</script>
+</div>
+
+<div id="Kill" class="tabcontent">
+  <h3>Kill</h3>
+  <p>Kill game</p>
+    <script language="javascript">
+        function kill()
+        {
+            window.location.href = "kill.html"
+        }
+</script>
+</div>
+
+<script>
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+</script>
+
+</body>
+        <script>
+
+
+
+            var color,colorEraser;
+
+            var b = true,c=true;
+
+            var dim = 5;
+            var erdim,posprevx,posprevy,pX1,pY1;
+            var dragbool=0,paletes=0,textinputbox=0;
+            var brush = 0;
+
+            window.addEventListener("keypress", keydetect, true);
+
+            function keydetect(e){
+
+                e = e || window.event;
+
+                if (e.keyCode == '43') {
+                    diminc();
+                }
+                else if (e.keyCode == '45') {
+                    dimdec();
+                }
+
+                putCursor(posprevx,posprevy);
+                document.getElementById("pos").innerHTML = "x:"+posprevx+" y:"+posprevy+"|brush:"+dim;
+
+            }
+
+
+            function diminc(){
+                dim++;
+            }
+
+            function dimdec(){
+                dim--;
+                if(dim<=1)dim=1;
+            }
+
+
+
+            function eraserFunc(){
+
+
+              if(Boolean(b)){
+                    erdim = dim;
+                    dim = 25;
+                    colorEraser = "#ffffff";
+                    document.getElementById("eraser").style.outline = "3px dashed black";
+                    b = !Boolean(b);
+              }else{
+                  dim = erdim;
+                  b = !Boolean(b);
+                  document.getElementById("eraser").style.outline = "none";
+              }
+
+
+            }
+
+
+
+
+            document.addEventListener("mousemove",getxy);
+            document.addEventListener("mousedown",getrectxy);
+
+
+
+
+            function DownFunc(){
+
+
+                if(Boolean(b)){
+                    color = document.getElementById("color").value;
+                }else{
+                    color=colorEraser;
+                }
+
+
+                document.addEventListener("mousemove",drawFunc);
+                document.addEventListener("mousedown",drawFunc);
+
+            }
+
+
+
+             function UpFunc(){
+                document.removeEventListener("mousemove",drawFunc);
+                document.removeEventListener("mousedown",drawFunc);
+
+            }
+
+
+            function getrectxy(e){
+                 var posX = e.clientX;
+                 var posY = e.clientY;
+
+
+                pX1 = posX;
+                pY1 = posY;
+
+            }
+
+
+            function brushRFunc(){
+                brush =0;
+                document.getElementById("Mcursor").style.border = "1px solid grey";
+                document.getElementById("Mcursor").style.borderRadius = "0";
+                document.getElementById("brushRect").style.outline = "3px dashed black";
+                document.getElementById("brushCircle").style.outline = "none";
+                document.getElementById("brushTriangle").style.outline = "none";
+                document.getElementById("rectangle").style.outline = "none";
+                document.getElementById("circle").style.outline = "none";
+
+            }
+
+            function brushCFunc(){
+                brush =1;
+                document.getElementById("Mcursor").style.border = "1px solid grey";
+                document.getElementById("Mcursor").style.borderRadius = "100%";
+                document.getElementById("brushRect").style.outline = "none";
+                document.getElementById("brushTriangle").style.outline = "none";
+                document.getElementById("brushCircle").style.outline = "3px dashed black";
+                document.getElementById("rectangle").style.outline = "none";
+                document.getElementById("circle").style.outline = "none";
+
+
+            }
+            function brushTFunc(){
+                brush =2;
+                document.getElementById("Mcursor").style.borderRadius = "0";
+                document.getElementById("Mcursor").style.borderTop = "none";
+                document.getElementById("Mcursor").style.borderRight = "none";
+                document.getElementById("brushRect").style.outline = "none";
+                document.getElementById("brushCircle").style.outline = "none";
+                document.getElementById("brushTriangle").style.outline = "3px dashed black";
+                document.getElementById("rectangle").style.outline = "none";
+                document.getElementById("circle").style.outline = "none";
+
+
+            }
+
+             function rectSFunc(){
+                brush =3;
+                dim = 5;
+                document.getElementById("Mcursor").style.border = "1px solid grey";
+                document.getElementById("Mcursor").style.borderRadius = "0";
+                document.getElementById("rectangle").style.outline = "3px dashed black";
+                document.getElementById("brushRect").style.outline = "none";
+                document.getElementById("brushCircle").style.outline = "none";
+                document.getElementById("brushTriangle").style.outline = "none";
+                document.getElementById("circle").style.outline = "none";
+
+            }
+            function circleSFunc(){
+                brush =4;
+                dim = 5;
+                document.getElementById("Mcursor").style.border = "1px solid grey";
+                document.getElementById("Mcursor").style.borderRadius = "100%";
+                document.getElementById("rectangle").style.outline = "none";
+                document.getElementById("circle").style.outline = "3px dashed black";
+                document.getElementById("brushRect").style.outline = "none";
+                document.getElementById("brushCircle").style.outline = "none";
+                document.getElementById("brushTriangle").style.outline = "none";
+            }
+
+            function trashFunc(){
+                var canvas = document.getElementById("mycanvas");
+                var ctx = canvas.getContext("2d");
+
+                ctx.clearRect(0,0,canvas.width,canvas.height);
+            }
+
+
+
+
+            function getxy(e){
+                    var posX = e.clientX;
+                    var posY = e.clientY;
+                    putCursor(posX,posY);
+
+
+                    posprevx = posX;
+                    posprevy = posY;
+                    var pal = document.getElementById('inspector').style;
+                    var txtw = document.getElementById('textInput').style;
+                    if(dragbool == 1){
+                        if(paletes==1){
+                            pal.transform = 'translate(-50%,-5px)';
+                            pal.left = posX + 'px';
+                            pal.top = posY + 'px';
+                        }
+
+                        if(textinputbox == 1){
+                            txtw.transform = 'translate(-50%,-5px)';
+                            txtw.left = posX + 'px';
+                            txtw.top = posY + 'px';
+                        }
+                    }
+
+                    document.getElementById("pos").innerHTML = "x:"+posX+" y:"+posY+"|brush:"+dim;
+
+
+                //strokefill
+
+
+              if(Boolean(c)){
+                    colp = document.getElementById('color').value;
+                    document.getElementById("strokeFill").style.background = colp;
+                    document.getElementById("strokeFill").style.border = '3px solid '+colp;
+
+              }else{
+                  colp = document.getElementById('color').value;
+                  document.getElementById("strokeFill").style.background = "none";
+                  document.getElementById("strokeFill").style.border = '3px solid '+colp;
+              }
+
+            }
+
+            function drawFunc(e){
+                    var posX = e.clientX;
+                    var posY = e.clientY;
+
+                    if(brush==0){
+                        drawRect(posX,posY);
+                        document.getElementById("brushRect").style.outline = "3px dashed black";
+                        document.getElementById("brushCircle").style.outline = "none";
+                        document.getElementById("brushTriangle").style.outline = "none";
+                        document.getElementById("rectangle").style.outline = "none";
+                        document.getElementById("circle").style.outline = "none";
+                    }else if(brush ==1){
+                        drawCircle(posX,posY);
+                        document.getElementById("brushRect").style.outline = "none";
+                        document.getElementById("brushTriangle").style.outline = "none";
+                        document.getElementById("brushCircle").style.outline = "3px dashed black";
+                        document.getElementById("rectangle").style.outline = "none";
+                        document.getElementById("circle").style.outline = "none";
+                    }else if(brush ==2){
+                        drawTriangle(posX,posY);
+                        document.getElementById("brushRect").style.outline = "none";
+                        document.getElementById("brushCircle").style.outline = "none";
+                        document.getElementById("brushTriangle").style.outline = "3px dashed black";
+                        document.getElementById("rectangle").style.outline = "none";
+                        document.getElementById("circle").style.outline = "none";
+                    }else if(brush ==3){
+                        drawRectangleFunc(pX1,pY1,posX,posY);
+                        document.getElementById("rectangle").style.outline = "3px dashed black" ;
+                        document.getElementById("brushRect").style.outline = "none";
+                        document.getElementById("brushCircle").style.outline = "none";
+                        document.getElementById("brushTriangle").style.outline = "none";
+                        document.getElementById("circle").style.outline = "none";
+                    }else if(brush ==4){
+                        drawCircleFunc(pX1,pY1,posX,posY);
+                        document.getElementById("rectangle").style.outline = "none" ;
+                        document.getElementById("brushRect").style.outline = "none";
+                        document.getElementById("brushCircle").style.outline = "none";
+                        document.getElementById("brushTriangle").style.outline = "none";
+                        document.getElementById("circle").style.outline = "3px dashed black";
+                    }
+
+            }
+
+
+            function putCursor(x,y){
+                var div = document.getElementById("Mcursor");
+                document.getElementById("mycanvas").style.cursor = "none";
+                div.style.cursor = "none";
+                div.style.width = dim+"px";
+                div.style.height = dim+"px";
+                div.style.left = x+2+"px";
+                div.style.top = y+2+"px";
+
+            }
+
+            function drawRect(x,y){
+            var canvas = document.getElementById("mycanvas");
+            var ctx = canvas.getContext("2d");
+                ctx.fillStyle = color;
+                ctx.fillRect(x+2,y+2,dim,dim);
+            }
+
+            function drawRectangleFunc(x1,y1,x2,y2){
+                var canvas = document.getElementById("mycanvas");
+                var ctx = canvas.getContext("2d");
+                ctx.fillStyle = color;
+                ctx.fillRect(x1+2,y1+2,x2-x1,y2-y1);
+            }
+
+            function drawCircleFunc(x1,y1,x2,y2){
+                var canvas = document.getElementById("mycanvas");
+                var ctx = canvas.getContext("2d");
+                ctx.beginPath();
+                ctx.fillStyle = color;
+                ctx.arc(x1+dim/2+2, y1+dim/2+2, (y2-y1)/2 , 0, 2 * Math.PI, true);
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            function drawCircle(x,y){
+            var canvas = document.getElementById("mycanvas");
+            var ctx = canvas.getContext("2d");
+                ctx.beginPath();
+                ctx.fillStyle = color;
+                ctx.arc(x+dim/2+2, y+dim/2+2, dim/2 , 0, 2 * Math.PI, true);
+                ctx.fill();
+                ctx.closePath();
+
+            }
+
+            function drawTriangle(x,y){
+            var canvas = document.getElementById("mycanvas");
+            var ctx = canvas.getContext("2d");
+                x+=2;
+                y+=2;
+                ctx.beginPath();
+                ctx.fillStyle = color;
+                ctx.moveTo(x,y);
+                ctx.lineTo(x,y+dim);
+                ctx.lineTo(x+dim,y+dim);
+                ctx.fill();
+                ctx.closePath();
+
+            }
+            function setText(ltxt,lsize,lfont,x,y){
+                var canvas = document.getElementById("mycanvas");
+                var ctx = canvas.getContext("2d");
+                if(Boolean(c)){
+                    ctx.fillStyle = document.getElementById("color").value;
+                    ctx.font = lsize + 'px ' + lfont;
+                    ctx.fillText(ltxt,x,y);
+                }else{
+                    ctx.strokeStyle = document.getElementById("color").value;
+                    ctx.font = lsize + 'px ' + lfont;
+                    ctx.strokeText(ltxt,x,y);
+                }
+                document.getElementById('textInput').style.display = "none";
+            }
+
+            function startdrag(){
+                dragbool = 1;
+            }
+            function stopdrag(){
+                dragbool = 0;
+            }
+
+            function showTextPannel(){
+            document.getElementById('textInput').style.display = "block";
+
+
+            }
+
+             function strokefillFunc(){
+                 var tempcol = document.getElementById('color').value;
+                 //text draw
+              if(Boolean(c)){
+                    document.getElementById('previzualizare').style.textShadow = '-1px -1px' +tempcol+',-1px 1px '+tempcol+',1px -1px '+tempcol+',1px 1px'+tempcol;
+                    document.getElementById('previzualizare').style.color = 'white';
+                    document.getElementById("strokeFill").style.background = document.getElementById('color').value;
+                    document.getElementById("strokeFill").style.border = '3px solid '+document.getElementById('color').value;
+                    c = !Boolean(c);
+              }else{
+
+                  c = !Boolean(c);
+                  document.getElementById('previzualizare').style.textShadow = 'none';
+                  document.getElementById('previzualizare').style.color = tempcol;
+                  document.getElementById("strokeFill").style.background = "none";
+                  document.getElementById("strokeFill").style.border = '3px solid '+document.getElementById('color').value;
+              }
+            }
+
+
+
+            function keyUpFunc(){
+                var pretxt =  document.getElementById('textcanvas').value;
+
+                if(pretxt != 0){
+                    document.getElementById('previzualizare').style.display = "block";
+                }else{
+                    document.getElementById('previzualizare').style.display = "none";
+                }
+
+
+
+                document.getElementById('previzualizare').innerHTML = pretxt;
+                document.getElementById('previzualizare').style.fontSize = document.getElementById('numcanvas').value + 'px';
+                document.getElementById('previzualizare').style.fontFamily = document.getElementById('fontfamily').value;
+
+
+            }
+
+
+        </script>
+        <div id="inspector" style="transform: translate(-50%, -5px); left: 875px; top: 21px;">
+            <form name="pallets" class="pallets">
+                <span onmousedown="startdrag();paletes=1;" onmouseup="stopdrag();paletes=0;" id="dragablepaletes">Pallets</span><br>
+                <input type="button" value="+" class="zoom" onmousedown="diminc()">
+                <input type="button" value="-" class="zoom" onmousedown="dimdec()">
+                <br>
+                <input type="button" id="eraser" onfocus="eraserFunc()" style="outline: black dashed 3px;">
+                <input type="button" id="brushRect" onfocus="brushRFunc()" style="outline: black dashed 3px;">
+                <br>
+                <input type="button" id="brushCircle" onfocus="brushCFunc()" style="outline: none;">
+                <input type="button" id="brushTriangle" onfocus="brushTFunc()" style="outline: none;">
+                <br>
+                <input type="button" id="rectangle" onfocus="rectSFunc()" style="outline: none;">
+                <input type="button" id="circle" onfocus="circleSFunc()" style="outline: none;">
+                <br>
+                <input type="button" id="textbtn" onclick="showTextPannel();">
+                <br>
+                <input type="button" id="trash" onfocus="trashFunc()">
+                <br>
+                <input type="color" id="color">
+            </form>
+        </div>
+        <div id="Mcursor" style="cursor: none; width: 29px; height: 29px; left: 559px; top: 448px; display: block; border: 1px solid grey; border-radius: 0px;"></div>
+        <p id="pos">x:557 y:446|brush:29</p>
+
+        <div id="textInput">
+            <span id="previzualizare">bla</span>
+            <div id="dragzone" onmousedown="startdrag();textinputbox=1;" onmouseup="stopdrag();textinputbox=0;"></div>
+            <input type="text" value="" placeholder="Text pentru afisare" id="textcanvas" onkeyup="keyUpFunc()">
+            <input type="button" value="ok" id="txtbtn" onclick="
+                                                                 var loctxt = document.getElementById('textcanvas').value;
+                                                                 var locsize = document.getElementById('numcanvas').value;
+                                                                 var locfont = document.getElementById('fontfamily').value;
+                                                                 var x = document.getElementById('textInput').style.left;
+                                                                 var y = document.getElementById('textInput').style.top;
+                                                                 x = parseInt(x);
+                                                                 y = parseInt(y);
+
+                                                                 setText(loctxt,locsize,locfont,x-115,y-10);
+                                                                 ">
+            <br>
+            <input type="number" value="12" min="8" max="72" id="numcanvas" onchange="keyUpFunc()">
+            <input type="text" id="fontfamily" value="Segoe UI" placeholder="Font" onblur="keyUpFunc()">
+            <input type="button" id="strokeFill" style="position: absolute; display: block; bottom: 5px; right: 9px; outline: grey solid 1px; cursor: pointer; width: 25px; height: 25px; background: rgb(0, 0, 0); border: 3px solid rgb(0, 0, 0);" onclick="strokefillFunc();"><br>
+
+        </div>
+
+        <p class="copy"> Hello !!! </p>
+
+</body></html>
