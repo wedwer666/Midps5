@@ -25,7 +25,9 @@ div#memory_board > div{
 </style>
 <script>
 
+//  The prototype(idea) is a project from youtube: https://www.youtube.com/watch?v=kne0HVNg5cQ
 var memory_array = ['A','A','B','B','C','C','D','D','E','E','F','F','G','G','H','H','I','I','J','J','K','K','L','L'];
+//var memory_array = ["Masa","Masa","Masa","Masa","Masa","Masa","Masa","Masa","Masa","Masa","Masa","Masa","Masa","Masa","Masa","Masa","Masa",]
 var memory_values = [];
 var memory_tile_ids = [];
 var tiles_flipped = 0;
@@ -86,10 +88,52 @@ function memoryFlipTile(tile,val){
 		}
 	}
 }
+
 </script>
+
+    // function to calculate how much time has passed since the game has began
+<script>
+
+        var seconds = null;
+        var ticker = null;
+
+        function startTimer( )
+        {
+            seconds = -1;
+            ticker = setInterval("tick( )", 1000);
+            tick( );
+        }
+
+        function tick( )
+        {
+            ++seconds;
+            var secs = seconds;
+            var hrs = Math.floor( secs / 3600 );
+            secs %= 3600;
+            var mns = Math.floor( secs / 60 );
+            secs %= 60;
+            var pretty = ( hrs < 10 ? "0" : "" ) + hrs
+                       + ":" + ( mns < 10 ? "0" : "" ) + mns
+                       + ":" + ( secs < 10 ? "0" : "" ) + secs;
+            document.getElementById("ELAPSED").innerHTML = pretty;
+        }
+        function stopTimer()
+        {
+
+        }
+    </script>
+
 </head>
 <body>
 <div id="memory_board"></div>
+    <body onLoad="startTimer( )">
+
+        The elapsed time is now  <span id="ELAPSED"></span>
+
+</body>
+    <body onLoad="stopTimer()">
+        The game lasted <span id="ELAPSED"></span>
+    </body>
 <script>newBoard();</script>
 </body>
 </html>
