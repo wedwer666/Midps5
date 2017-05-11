@@ -231,6 +231,7 @@ div.tab button.active {
   <button class="tablinks" onclick="openCity(event, 'Snake'); snake()">Snake Game</button>
   <button class="tablinks" onclick="openCity(event, 'Funny'); funny()">Funny Game</button>
   <button class="tablinks" onclick="openCity(event, 'Kill'); kill()">Kill Game</button>
+  <button class="tablinks" onclick="openCity(event, 'Memory'); memory()">Memory Game</button>
 </div>
 
 <div id="Snake" class="tabcontent">
@@ -267,6 +268,17 @@ div.tab button.active {
 </script>
 </div>
 
+<div id="Memory" class="tabcontent">
+  <h4>Memory Game</h4>
+  <p>Memory Game</p>
+    <script language="javascript">
+        function memory()
+        {
+            window.location.href = "memory.html"
+        }
+</script>
+</div>
+
 <script>
 function openCity(evt, cityName) {
     var i, tabcontent, tablinks;
@@ -285,8 +297,6 @@ function openCity(evt, cityName) {
 
 </body>
         <script>
-
-
 
             var color,colorEraser;
 
