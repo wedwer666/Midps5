@@ -1,8 +1,8 @@
 ## MIDPS 5th Project
 
 Complex Game Application 
-Language: JavaScript, Canvas and Css / Html5
-IDE: Brackets.io
+ * Language: JavaScript, Canvas and Css / Html5
+ * IDE: Brackets.io
 
 ## Getting Started
 
