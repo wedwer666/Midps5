@@ -1,4 +1,4 @@
-# MIDPS 5th Project
+## MIDPS 5th Project
 
 Complex Game Application 
 Language: JavaScript, Canvas and Css / Html5
