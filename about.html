@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  text-align: center;
+  background: url("http://i.imgur.com/UpFLrko.jpg") no-repeat center fixed;
+  background-size: auto;
+  background-position: center;
+  color: white;
+  font-family: georgia;
+}
+.first {
+  margin-left: 200px;
+  margin-right: 0px;
+  margin-top: -5px;
+  padding: 10px;
+  font-size: 22px;
+  background-color:gray;
+  opacity: 0.9;
+  border-color: #cc6600;
+  border-style: solid;
+  border-width: 10px;
+  border-radius: 20px;
+}
+.second{
+  max-width: 500px;
+  padding: 20px;
+  margin: 0 auto;
+  color:white;
+/*  background: rgba(215,117,44,0.8);
+*/  background: rgba(0,0,0,0.7);
+}
+input {
+  border: 0;
+  padding: 10px;
+  font-size: 18px;
+  background: orange;
+  color:
+}
+input[type="submit"] {
+  background: #cc6600;
+  color: white;
+  border-radius: 20px;
+
+}
+input[type="submit"]:hover{
+  background-color: #999900;
+}
+
+input[name="email"] {
+  background: #999900;
+  color: white;
+  font-family: georgia
+}
+img
+  {
+   border-color: #999900;
+   border-radius: 80px;
+   float: left;
+  }
+ul {
+  padding: 20px;
+  background: rgba(0,0,0,0.7);
+}
+li {
+  display: inline;
+  padding: 0px 10px 0px 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+a {
+  color: white;
+}
+a:hover {
+    color: #999900;
+}
+article {
+  max-width: 500px;
+  padding: 20px;
+  margin: 0 auto;
+  color:#cc6600;
+}
+#panel{
+    padding: 20px;
+}
+#panel2 {
+    padding: 20px;
+    display: none;
+}
+#panel4 {
+    padding: 20px;
+    display: none;
+}
+#github {
+    padding: 20px;
+    display: none;
+    background-color: rgba(0,0,0,0.7);
+    max-width: 500px;
+    margin: 0 auto;
+}
+@media (max-width: 500px) {
+  h1 {
+    font-size: 36px;
+    padding: 5px;
+  }
+
+  .first{
+    display: none;
+  }
+
+  img {
+    float: none;
+  }
+    </style>
+
+<head>
+   <link href="style.css" type="text/css" rel="stylesheet"/>
+   <script src="myscripts.js" type="text/javascript"></script>
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!--   <script src="//platform.linkedin.com/in.js" type="text/javascript"></script>-->
+   <script async src="//cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
+   <script>
+      $(document).ready(function(){
+      // $("#flip").click(function(){
+      //   $("#panel").slideToggle("slow");});
+      $("#flip2").click(function(){
+        $("#panel2").slideToggle("slow");});
+      $("#flip3").click(function(){
+        $("#github").slideToggle("slow");});
+      $("#flip4").click(function(){
+        $("#panel4").slideToggle("slow");});
+      });
+   </script>
+   <title>Sana Javed</title>
+</head>
+<body>
+   <header>
+
+   </header>
+   <ul>
+<!--       <li id="flip"><a href="#">About</a></li> -->
+      <li id="flip3"><a href="#">Github Link</a></li>
+      <li id="flip2"><a href="#">LinkedIn</a></li>
+      <li id="flip4"><a href="#">Email Me</a></li>
+   </ul>
+   <div id="all content">
+      <div id="panel4">
+         <form name="email_signup" method="post">
+            <input name="email" placeholder="Email me and say hi!">
+            <input type="submit">
+         </form>
+      </div>
+      <div id="panel">
+         <article>
+            <p class="second"><b><a>About Memory Game</a></b><br><br>Hello there! Hope you will enjoy the game!!! <br><br>
+            The game is a memory game where you need to match pairs of tiles. Playing is very simple - you turn over one tile and then try to find a matching tile.
+
+                When you click on the first tile of a turn and you have exposed a matching tile in a previous turn, a message tells you that the pair is known. This indicates that you should then be able to make a match (if you have perfect recall). The scoring system incorporates this principle. In some levels, all the tiles are revealed initially for a few seconds. This makes it harder to score a perfect recall as it assumes you remember where each tile is.
+            <br><br> :) :) :)  <br><br>
+            </p>
+         </article>
+      </div>
+      <div id="github">
+<!--         <a class="embedly-card" data-card-theme="dark" href="http://github.com/sanajaved7">sanajaved7 (Sana Javed)</a>-->
+      </div>
+      <div id="panel2">
+         <script type="IN/MemberProfile" data-id="https://www.linkedin.com/in/sanajaved" data-format="inline"></script>
+      </div>
+   </div>
+   </script>
+   </div>
+</body>
+
+</body>
+</html>

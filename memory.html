@@ -93,14 +93,30 @@ div#memory_board > div{
     <ul>
       <li onclick="gameBTN()"><a href="#"> Game </a></li>
     <li onclick=" newgame()"><a href="#"> Create new board </a></li>
+
       <li><a href="?menu=2&skin=3&p=Web-Menus"> Store and States </a></li>
-      <li><a href="?menu=2&skin=3&p=Web-Menus"> About </a></li>
+
+        <li onclick=" about()"><a href="#"> About </a></li>
+
+<!--      <li><a href="?menu=2&skin=3&p=Web-Menus"> About </a></li>-->
 
 
 
 <script>
 
-   function newgame()
+//    window.onload = alert(localStorage.getItem("storageName"));
+
+//    function memory()
+//    {
+//        window.location.href = "memory.html"
+//    }
+//
+    function about()
+    {
+        window.location.href = "about.html"
+    }
+
+    function newgame()
         {
             window.location.href = "newgame.html"
         }
@@ -108,7 +124,8 @@ div#memory_board > div{
 
     function gameBTN()
     {
-        alert("Game btn is pressed")
+        window.location.href = "memory.html"
+//        alert("Game btn is pressed")
     }
 
 

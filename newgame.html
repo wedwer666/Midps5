@@ -1,4 +1,9 @@
- #sse2
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+    #sse2
 {
     /*You can decorate the menu's container, such as adding background images through this block*/
     background-color: #003366;
@@ -69,7 +74,17 @@
       <li><a href="?menu=2&skin=3&p=Web-Menus"> Store and States </a></li>
       <li><a href="?menu=2&skin=3&p=Web-Menus"> About </a></li>
 
-        <script>
+
+         <li onclick=" memory()"><a href="#"> Game </a></li>
+  <script>
+
+     function gameBTN()
+    {
+        window.location.href = "memory.html"
+//        alert("Game btn is pressed")
+    }
+
+
              var sse2 = function () {
     var rebound = 20; //set it to 0 if rebound effect is not prefered
     var slip, k;
@@ -211,3 +226,18 @@ else {
 }
 
         </script>
+
+
+<script>
+//function myFunction() {
+//    document.getElementById("myForm").submit();
+//}
+//
+    window.onload = function() {
+   var getInput = prompt("Hey type something here: ");
+   localStorage.setItem("storageName",getInput);
+}
+</script>
+
+</head>
+      </html>
