@@ -64,7 +64,40 @@
 </style>
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="jquery.cookie.js"></script>
+<script>
+    $(document).ready(function(){
 
+        $(".tablinks1").on("click", function(){
+            var memory_array = ['A','A','B','B','C','C','D','D','E','E','F','F','G','G','H','H','I','I','J','J','K','K','L','L'];
+            $.cookie("memory_array",JSON.stringify(memory_array));
+            document.location.href = "memory.html"
+        });
+    });
+
+
+    $(document).ready(function()
+    {
+        $(".tablinks2").on("click", function()
+        {
+            var memory_array = ['1','1','2','2','3','3','4','4','5','5','6','6','7','7','8','8','9','9','10','10','11','11','12','12'];
+                 $.cookie("memory_array",JSON.stringify(memory_array));
+            document.location.href = "memory.html"
+        });
+    });
+
+
+      $(document).ready(function()
+    {
+        $(".tablinks3").on("click", function()
+        {
+            var memory_array = ['-','-','+','+','/','/','*','*','&','&','%','%','@','@','#','#','$','$','( ','( ',')', ')','0', '0'];
+                 $.cookie("memory_array",JSON.stringify(memory_array));
+            document.location.href = "memory.html"
+        });
+    });
+
+
+    </script>
 
 
 
@@ -80,13 +113,14 @@
       <li><a href="?menu=2&skin=3&p=Web-Menus"> About </a></li>
 
 
-<!--         <li onclick=" memory()"><a href="#"> Game </a></li>-->
+
   <script>
 
      function gameBTN()
     {
         window.location.href = "memory.html"
-//        alert("Game btn is pressed")
+        //var memory_array = ['A','A','B','B','C','C','D','D','E','E','F','F','G','G','H','H','I','I','J','J','K','K','L','L'];
+            //var memory_array = ['1','1','2','2','3','3','4','4','5','5','6','6','7','7','8','8','9','9','10','10','11','11','12','12'];
     }
 
 
@@ -230,37 +264,45 @@ else {
     window["onload"] = sse2.buildMenu;
 }
 
+
         </script>
+<!--function to trafer cookies to another page--------------------------------------------------------------------------->
 
 
-<script>
+<body>
+   <div class="tab">
+        <button class="tablinks1">First new board </button>
+       <button class="tablinks2">Second new board</button>
+       <button class="tablinks3">Third new board</button>
+</div>
 
-    var day;
-switch (new Date().getDay()) {
-    case 0:
-        day = "Sunday";
-        break;
-    case 1:
-        day = "Monday";
-        break;
-    case 2:
-        day = "Tuesday";
-        break;
-    case 3:
-        day = "Wednesday";
-        break;
-    case 4:
-        day = "Thursday";
-        break;
-    case 5:
-        day = "Friday";
-        break;
-    case  6:
-        day = "Saturday";
-}
-document.getElementById("demo").innerHTML = "Today is " + day;
+
+
+
+
 </script>
-<!--        var memory_array = ['A','A','B','B','C','C','D','D','E','E','F','F','G','G','H','H','I','I','J','J','K','K','L','L'];-->
+    </div>
+
+    <script>
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+</script>
+
+</body>
+    </body>
+
+</script>
 
 </head>
       </html>
