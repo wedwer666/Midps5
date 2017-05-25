@@ -3,9 +3,10 @@
 <head>
 <style>
 
+
     div {
   height: 190px;
-  line-height: 190px;
+  line-height: 20px;
   text-align: center;
 /*  border: 2px dashed #f69c55;*/
 }
@@ -111,18 +112,25 @@ div#memory_board > div{
     <li onclick=" newgame()"><a href="#"> Create new board </a></li>
       <li><a href="?menu=2&skin=3&p=Web-Menus"> Store and States </a></li>
       <li><a href="?menu=2&skin=3&p=Web-Menus"> About </a></li>
+      </ul>
 
-    <span>
-            <p>The game is a memory game where you need to match pairs of tiles. Playing is very simple - you turn over one tile and then try to find a matching tile.</p>
-            <p> When you click on the first tile of a turn and you have exposed a matching tile in a previous turn, a message tells you that the pair is known. This indicates that you should then be able to make a match (if you have perfect recall).</p>
-            The scoring system incorporates this principle. In some levels, all the tiles are revealed initially for a few seconds. This makes it harder to score a perfect recall as it assumes you remember where each tile is.</span>
+      <div>
+          <p>-------------------Enjoy-------------------</p>
+          <p>       </p>
+           <p> The game is a memory game where you need to match pairs of tiles. Playing is very simple - you turn over one tile and then try to find a matching tile. </p>
+          <p>-------------------Game-------------------</p>
+            <p>When you click on the first tile of a turn and you have exposed a matching tile in a previous turn, a message tells you that the pair is known. This indicates that you should then be able to make a match (if you have perfect recall). </p>
+           <p>-------------------Life-------------------</p>
+            <p> The scoring system incorporates this principle. In some levels, all the tiles are revealed initially for a few seconds. This makes it harder to score a perfect recall as it assumes you remember where each tile is.  </p>
+          <p>-------------------:)-------------------</p>
+      </div>
+
 
   <script>
 
      function gameBTN()
     {
         window.location.href = "memory.html"
-//        alert("Game btn is pressed")
     }
 
 
