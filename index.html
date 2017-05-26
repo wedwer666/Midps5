@@ -35,7 +35,7 @@ states = {
 	Splash: 0, Game: 1, Score: 2
 },
 // Game objects //
-/* butonu ok este iniyiat in main()
+/* butonu ok este initiat in main()
  */
 okbtn,
 /* cream playerul*/
@@ -99,8 +99,7 @@ flopps = {
 		ctx.restore();
 	}
 },
-/**
- * The pipes
+/*Obstacolele
  */
 pipes = {
 	_pipes: [],
@@ -166,7 +165,7 @@ pipes = {
 		}
 	}
 };
-/* Preve un click */
+/* Prevede un click */
 function onpress(evt) {
 	switch (currentstate) {
 		// schimba starea si face update la viteza miscarii playerului
