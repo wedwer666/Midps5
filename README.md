@@ -8,7 +8,6 @@ Complex Game Application
 
 1. Install IDE http://brackets.io/ on laptop
 2. Add the github plugin in order to upload the chenges in the project: https://www.youtube.com/watch?v=YVbbdCDBIbI 
-3. De facut git pull la proiect pe laptop
 3. Make git pull of the project.
 
 
@@ -27,9 +26,9 @@ Explain what these tests test and why
 
 ## Authors
 
-* **Daniela Cazac** - *All the tastks she did there * 
-* **Grubii Mihaela** - *All the tastks she did there * 
-* **Mitriuc Maria** - *All the tastks she did there * 
+* **Daniela Cazac** 
+* **Grubii Mihaela**  
+* **Mitriuc Maria** 
 
 ## License
 
