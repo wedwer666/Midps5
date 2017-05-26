@@ -1,0 +1,10 @@
+Ideea mea de joaca este un single player.
+Grubii Mihaela 25.05.2017
+Titlul jocului: Flopps
+Limbaje folosite: JavaScript, HTML;
+In urma efectuarii acestei aplicatii, am creat o joaca care are la baza conceptul de joc un care este necesar sa evitam obstacolele si este necesara de a fi prelucrata depistarea coliziunii.
+Ideea jocului e similara altor jocuri din aceasta categorie. Primitivele grafice imi apartin, iar unele idei din cod sunt genereate din urmatoarea sursa:
+http://www.lessmilk.com/tutorial/flappy-bird-phaser-1
+Urmatorii pasi: Ca creator a acestui joc , as dori sa il transpun si sa il generez ca o aplicatie mobila.
+Concluzi:
+In aceasta lucrare de laborator am putut sa dezvoltam spiritul de echipa dar in acelasi timp am setat fiecare din noi obiectve de realizare a nor componente separate. Acest joc este unul interactiv,si la realizarea lui am putut ajunge la un rezultat bun. Am utilizat ca IDE : Sublime Text, Editorul de Imagini (Photoshop CC 2015) pentru crearea animatiilor precum si Paint.  Am lucrat si asupra aplicatiei Paint care a servit ca baza pentru intregul nostru proiect. In urma acestui proiect am repartizat taskurile proportional astfel incit eu ca si colegele mele am putut sa prezentam/ sa realizam 3 aplicatii separate si 1 comuna. Aceasta experienta a fost una buna datorita divizarii eficiente a taskurrilor dintre mine si colegele mele.
